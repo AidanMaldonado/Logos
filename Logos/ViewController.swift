@@ -88,6 +88,20 @@ class ViewController: UIViewController {
         }
     }
     
+    //Item List
+    /*
+        Water
+        Knife
+    */
+    //Random Items
+    func findRandomItem() -> String {
+        let arrayOfItems = ["Water", "Knife"]
+        
+        let rand = Int.random(in: 0...(arrayOfItems.count - 1))
+        
+        return arrayOfItems[rand]
+    }
+    
     //Primary Game Loop
     
     //Action on travel
@@ -114,14 +128,16 @@ class ViewController: UIViewController {
         }
     }
     
+    //Add ability to get items in backpack
     @IBAction func optionTwoButton() {
         if optionTwoButtonLabel.currentTitle! == "Gather Water" {
             water += 5
-            updateLabels()
         } else if optionTwoButtonLabel.currentTitle! == "Search" {
-            
+            let item = findRandomItem()
+            textInfo = "You found \(item)"
         }
         
+        updateLabels()
         optionTwoButtonLabel.isHidden = true
     }
 
