@@ -48,6 +48,15 @@
                                     <action selector="travelButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="V3D-wB-awP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFU-mv-tPJ">
+                                <rect key="frame" x="16" y="514" width="343" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="Option Two"/>
+                                <connections>
+                                    <action selector="optionTwoButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="zVe-gN-oWd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -55,6 +64,7 @@
                     <connections>
                         <outlet property="daysLeftLabel" destination="xIQ-Zu-lIh" id="dU9-lm-xo7"/>
                         <outlet property="infoLabel" destination="ZYc-UC-opD" id="sQn-kd-or9"/>
+                        <outlet property="optionTwoButtonLabel" destination="XFU-mv-tPJ" id="txd-aY-59h"/>
                         <outlet property="travelButtonLabel" destination="nLq-YT-tyi" id="tal-al-8fX"/>
                         <outlet property="waterLabel" destination="3No-G9-R6p" id="I7y-VK-1Sq"/>
                     </connections>

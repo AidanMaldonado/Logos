@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     var gameTurn = 240 //Each hour is a tick
     //Not changeable on restart
     var gameTile = ["Shack", "Nothing but Sand", "Oasis"]
+    var gameOption = ["Search", "None", "Gather Water"]
+    var optionText = ""
     var uiToggle = true
     var restartGame = false
     
@@ -25,10 +27,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var waterLabel: UILabel!
     @IBOutlet weak var travelButtonLabel: UIButton!
+    @IBOutlet weak var optionTwoButtonLabel: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLabels()
+        optionTwoButtonLabel.isHidden = true
     }
     
     func updateLabels() {
@@ -71,9 +75,20 @@ class ViewController: UIViewController {
         restartGame = false
     }
     
+    //Determines the next place the user goes to
     func nextLocation() {
-        let rand = Int.random(in: 0...gameTile.count)
+        let rand = Int.random(in: 0...(gameTile.count - 1))
+        textInfo = gameTile[rand]
+        let gameOptionText = gameOption[rand]
+        if gameOptionText != "None" {
+            optionTwoButtonLabel.isHidden = false
+            optionTwoButtonLabel.setTitle(gameOptionText, for: .normal)
+        } else {
+            optionTwoButtonLabel.isHidden = true
+        }
     }
+    
+    //Primary Game Loop
     
     //Action on travel
     //Decrements water and gameturn values
@@ -82,21 +97,33 @@ class ViewController: UIViewController {
         if restartGame == true {
             restartGameFunc()
         } else {
-            water -= 1
-            //Checks if water has run out
-            if water <= 0 {
-                playerDied(of: "Dehydration")
-            }
             //Checks if one day has passed
             gameTurn -= 1
             if gameTurn % 24 == 0 {
                 days -= 1
             }
+            water -= 1
+            //Checks if water has run out
+            if water <= 0 {
+                playerDied(of: "Dehydration")
+            } else {
+                nextLocation()
+            }
             
             updateLabels()
         }
     }
-
+    
+    @IBAction func optionTwoButton() {
+        if optionTwoButtonLabel.currentTitle! == "Gather Water" {
+            water += 5
+            updateLabels()
+        } else if optionTwoButtonLabel.currentTitle! == "Search" {
+            
+        }
+        
+        optionTwoButtonLabel.isHidden = true
+    }
 
 }
 
