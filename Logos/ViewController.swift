@@ -140,7 +140,14 @@ class ViewController: UIViewController {
             water += 5
         } else if optionTwoButtonLabel.currentTitle! == "Search" {
             let item = findRandomItem()
-            bagItems.append(item)
+            if bagItems[0] == "" {
+                bagItems[0] = item
+            } else if bagItems[1] == "" {
+                bagItems[1] = item
+            } else {
+                bagItems[2] = item
+            }
+            
             textInfo = "You found \(item)"
         }
         
