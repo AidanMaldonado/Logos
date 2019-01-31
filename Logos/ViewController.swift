@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     //Not changeable on restart
     var gameTile = ["Shack", "Nothing but Sand", "Oasis"]
     var gameOption = ["Search", "None", "Gather Water"]
+    var bagItems = ["", "", ""]
     var optionText = ""
     var uiToggle = true
     var restartGame = false
@@ -28,6 +29,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var waterLabel: UILabel!
     @IBOutlet weak var travelButtonLabel: UIButton!
     @IBOutlet weak var optionTwoButtonLabel: UIButton!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! BackPackViewController
+        destVC.bagItems = bagItems
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +140,7 @@ class ViewController: UIViewController {
             water += 5
         } else if optionTwoButtonLabel.currentTitle! == "Search" {
             let item = findRandomItem()
+            bagItems.append(item)
             textInfo = "You found \(item)"
         }
         
